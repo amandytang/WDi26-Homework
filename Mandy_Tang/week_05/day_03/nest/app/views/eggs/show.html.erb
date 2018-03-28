@@ -1,0 +1,14 @@
+<h1><%= @egg.name %></h1>
+<li><%= @egg.pattern %></li>
+<% if @egg.image.present? %>
+<%= image_tag @egg.image, :alt => @egg.name, :class => 'feature' %>
+<% end %>
+
+<% if @egg.bird.present? %>
+<h2>Associated Bird</h2>
+<li><%= link_to @egg.bird.name, @egg.bird %></li>
+<% end %>
+
+<br>
+<%= link_to 'Edit Egg', edit_egg_path %>
+<%= link_to 'Delete Egg', @egg, :method => 'delete', :data => { :confirm => 'Are you sure?'} %>

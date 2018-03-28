@@ -1,0 +1,19 @@
+<h1><%= @bird.name %></h1>
+<li><%= @bird.species %></li>
+<li><%= @bird.colour %></li>
+<% if @bird.image.present? %>
+<%= image_tag @bird.image, :alt => @bird.name, :class => 'feature' %>
+<% end %>
+
+<% unless @bird.eggs.empty? %>
+<h2>Eggs</h2>
+<% @bird.eggs.each do |egg| %>
+
+<%= link_to image_tag(egg.image, :alt => egg.name, :class => 'thumb'), egg %>
+<% end %>
+<% end %>
+
+
+<br>
+<%= link_to 'Edit Bird', edit_bird_path %>
+<%= link_to 'Delete Bird', @bird, :method => 'delete', :data => { :confirm => 'Are you sure?'} %>

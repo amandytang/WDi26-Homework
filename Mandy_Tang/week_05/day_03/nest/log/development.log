@@ -1,0 +1,2990 @@
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4865736340580905230)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBirds (20180328053935)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "birds" ("id" bigserial primary key, "name" text, "species" text, "colour" text, "image" text)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180328053935"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateEggs (20180328054427)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "eggs" ("id" bigserial primary key, "name" text, "pattern" text, "image" text)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180328054427"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-28 05:47:12.552082"], ["updated_at", "2018-03-28 05:47:12.552082"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4865736340580905230)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mBird Load (1.1ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "birds" ("name", "species", "colour") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Superb Fairy Wren"], ["species", "Maluridae"], ["colour", "Brown, black and blue"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "birds" ("name", "species", "colour") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Kingfisher"], ["species", "Alcedinidae"], ["colour", "Blue and orange"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "eggs" ("name", "pattern") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Superb Fairy Wren egg"], ["pattern", "Matte white with reddish-brown splotches"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "eggs" ("name", "pattern") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Kingfisher egg"], ["pattern", "White and glossy"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "birds"[0m
+Started GET "/" for 127.0.0.1 at 2018-03-28 18:47:59 +1100
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (5.1ms)
+Completed 200 OK in 47ms (Views: 34.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bird" for 127.0.0.1 at 2018-03-28 18:48:08 +1100
+  
+ActionController::RoutingError (No route matches [GET] "/bird"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 18:48:11 +1100
+  
+ActionController::RoutingError (No route matches [GET] "/birds"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-03-28 18:50:36 +1100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  Rendered birds/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 848ms (Views: 838.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 18:50:42 +1100
+  
+ActionController::RoutingError (No route matches [GET] "/birds"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 18:53:16 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  Rendered birds/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 65ms (Views: 60.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:53:22 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 18.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:55:43 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 37ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/" for 127.0.0.1 at 2018-03-28 18:55:46 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.2ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 40ms (Views: 26.1ms | ActiveRecord: 9.4ms)
+
+
+Started GET "/birds/" for 127.0.0.1 at 2018-03-28 18:56:13 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:56:14 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 31ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 18:56:46 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  Rendered eggs/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 18:56:59 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 37ms (Views: 28.5ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 18:57:00 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 34ms (Views: 28.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 18:57:02 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 35ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:58:21 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 40ms (Views: 24.2ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:58:27 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 18:59:21 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 48ms (Views: 44.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 19:00:08 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 38ms (Views: 23.3ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 19:00:54 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 39ms (Views: 33.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 19:01:18 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/eggs/show.html.erb:4: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+r.append=( @egg.image, :alt => @egg.name );@output_buffer.sa
+                              ^):
+  
+app/views/eggs/show.html.erb:4: syntax error, unexpected =>, expecting &. or :: or '[' or '.'
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 19:03:14 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 41ms (Views: 32.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:03:42 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 28ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:09:01 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 54ms (Views: 48.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:09:03 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.0ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 43ms (Views: 36.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:09:17 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 18.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/rails/info" for 127.0.0.1 at 2018-03-28 19:09:52 +1100
+Processing by Rails::InfoController#index as HTML
+Redirected to http://localhost:3000/rails/info/routes
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2018-03-28 19:09:52 +1100
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb [17 times] (5.0ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 32ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-28 19:10:03 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 25ms (Views: 21.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:10:04 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (5.0ms)
+  Rendered birds/new.html.erb within layouts/application (11.1ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <%= form_for @bird do |f|  %>
+    2: 
+    3: <%= f.label :name, :autofocus => 'true', :required => 'true' %>
+    4: <%= f.text_field :name %>
+  
+app/views/birds/_form.html.erb:1:in `_app_views_birds__form_html_erb__3567795811905514874_70189347832020'
+app/views/birds/new.html.erb:2:in `_app_views_birds_new_html_erb__3856427501894439459_70189347866440'
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:10:17 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.7ms)
+  Rendered birds/new.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <% form_for @bird do |f|  %>
+    2: 
+    3: <%= f.label :name, :autofocus => 'true', :required => 'true' %>
+    4: <%= f.text_field :name %>
+  
+app/views/birds/_form.html.erb:1:in `_app_views_birds__form_html_erb__3567795811905514874_70189340213160'
+app/views/birds/new.html.erb:2:in `_app_views_birds_new_html_erb__3856427501894439459_70189331742140'
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:11:01 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (20.4ms)
+  Rendered birds/new.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 63ms (Views: 48.7ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/birds" for 127.0.0.1 at 2018-03-28 19:11:19 +1100
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for BirdsController):
+  
+actionpack (5.1.5) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.5) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.5) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.5) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.5) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.5) lib/action_dispatch/routing/route_set.rb:844:in `call'
+rack (2.0.4) lib/rack/etag.rb:25:in `call'
+rack (2.0.4) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.4) lib/rack/head.rb:12:in `call'
+rack (2.0.4) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.4) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.5) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/birds" for 127.0.0.1 at 2018-03-28 19:12:22 +1100
+Processing by BirdsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eVALPnfLLuRMYWiqp5JihgSR6Cubrtu5rpuRmQaABy0r77kr5/IALy4IG4c1BpIJcqkwsVMzn1sRnGLmG1/Udw==", "bird"=>{"name"=>"", "species"=>"Corvidae", "colour"=>"Black"}, "commit"=>"Create Bird"}
+No template found for BirdsController#create, rendering head :no_content
+Completed 204 No Content in 103ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-28 19:13:08 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 33ms (Views: 24.0ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:13:09 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.4ms)
+  Rendered birds/new.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 30ms (Views: 26.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/birds" for 127.0.0.1 at 2018-03-28 19:13:16 +1100
+Processing by BirdsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hMyvMtmjHqAeM4phKoPrxR0kYmuYLKd5vnn6IQeS6gVyQKYXgRCcyOwf0er/Jf0agsuOn+MmUgnm//DKrzhAWQ==", "bird"=>{"name"=>"", "species"=>"Corvidae", "colour"=>"Black"}, "commit"=>"Create Bird"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "birds" ("name", "species", "colour") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", ""], ["species", "Corvidae"], ["colour", "Black"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#create, rendering head :no_content
+Completed 204 No Content in 112ms (ActiveRecord: 4.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:13:20 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.7ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 36ms (Views: 31.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:13:27 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.3ms)
+  Rendered birds/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 43ms (Views: 34.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:13:31 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 44ms (Views: 39.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:14:12 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 38ms (Views: 28.6ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:14:20 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.5ms)
+  Rendered birds/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 44ms (Views: 38.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/birds" for 127.0.0.1 at 2018-03-28 19:14:26 +1100
+Processing by BirdsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UN6fUc3tPVTuG5DKR0TM3KK7MFOoLXB7fgfC9g5bhpGmUpZ0lV6/PBw3y0GS4toDPVTcp9MnhQsmgcgdpvEszQ==", "bird"=>{"name"=>"", "species"=>"Corvidae", "colour"=>"Black"}, "commit"=>"Create Bird"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "birds" ("name", "species", "colour") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", ""], ["species", "Corvidae"], ["colour", "Black"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#create, rendering head :no_content
+Completed 204 No Content in 107ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:14:29 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 38ms (Views: 31.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 19:14:33 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 35ms (Views: 27.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 19:17:21 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 39ms (Views: 24.1ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:17:23 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 22ms (Views: 18.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:17:43 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 41ms (Views: 37.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:17:44 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.0ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 38ms (Views: 31.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:17:44 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 24ms (Views: 21.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:17:47 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.4ms)
+  Rendered birds/new.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 40ms (Views: 35.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/birds" for 127.0.0.1 at 2018-03-28 19:17:53 +1100
+Processing by BirdsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Dc/uJUEAtt0ivQCsl/zq4MmVF0H6jCNPgpsFr2bTzrb7Q+cAGbM0tdCRWydCWvw/Vnr7tYGG1j/aHQ9Eznlk6g==", "bird"=>{"name"=>"Raven", "species"=>"Corvidae", "colour"=>"Black", "image"=>""}, "commit"=>"Create Bird"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "birds" ("name", "species", "colour", "image") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Raven"], ["species", "Corvidae"], ["colour", "Black"], ["image", ""]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#create, rendering head :no_content
+Completed 204 No Content in 107ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:17:54 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 38ms (Views: 33.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/5" for 127.0.0.1 at 2018-03-28 19:17:55 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 28ms (Views: 23.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:18:04 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.7ms)
+  Rendered birds/new.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 47ms (Views: 42.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:19:42 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 37ms (Views: 22.7ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:20:00 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:20:01 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 35ms (Views: 31.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:20:33 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (2.5ms)
+  Rendered eggs/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 44ms (Views: 40.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/eggs" for 127.0.0.1 at 2018-03-28 19:22:05 +1100
+Processing by EggsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PoTVb3K0SETWQrNJ/cutgUTFaTHl0CAtoZDXa+1eGRhsO2d64o1mj7QrwGRvX10OMv2xqy1NZM8elyQU8IHKQg==", "egg"=>{"name"=>"Raven Egg", "pattern"=>"Pale bluish-green, brown-blotched", "image"=>"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Corvus_corax_tingitanus_MHNT_232_HdB_Djebel_Messaad_Algerie.jpg/2560px-Corvus_corax_tingitanus_MHNT_232_HdB_Djebel_Messaad_Algerie.jpg"}, "commit"=>"Create Egg"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "eggs" ("name", "pattern", "image") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Raven Egg"], ["pattern", "Pale bluish-green, brown-blotched"], ["image", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Corvus_corax_tingitanus_MHNT_232_HdB_Djebel_Messaad_Algerie.jpg/2560px-Corvus_corax_tingitanus_MHNT_232_HdB_Djebel_Messaad_Algerie.jpg"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+No template found for EggsController#create, rendering head :no_content
+Completed 204 No Content in 103ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:22:08 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 43ms (Views: 35.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:22:08 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 31ms (Views: 23.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:22:50 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 33ms (Views: 29.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:19 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 45ms (Views: 41.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:19 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 36ms (Views: 31.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:20 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 21ms (Views: 16.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:33 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 44ms (Views: 38.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:34 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 33ms (Views: 28.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:23:52 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 41ms (Views: 37.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:24:56 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 42ms (Views: 36.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:21 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 41ms (Views: 38.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:22 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 21ms (Views: 17.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:23 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:23 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 29ms (Views: 24.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:23 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 54.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:25:38 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 30ms (Views: 27.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:25:43 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 45ms (Views: 30.5ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:25:44 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (1.7ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 37ms (Views: 28.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:25:45 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (4.1ms)
+  Rendered birds/new.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 35ms (Views: 31.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:26:10 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (1.9ms)
+  Rendered birds/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 46ms (Views: 43.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:26:12 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 36ms (Views: 31.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:26:13 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.2ms)
+  Rendered birds/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 42ms (Views: 36.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:26:13 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 41ms (Views: 34.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:26:14 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (3.6ms)
+  Rendered eggs/new.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 37ms (Views: 32.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:26:15 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 44ms (Views: 38.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 19:26:16 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 34ms (Views: 29.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:26:17 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 35ms (Views: 27.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:18 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 30ms (Views: 25.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:27 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 40ms (Views: 37.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:28 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 33ms (Views: 28.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:28 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 26ms (Views: 21.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:36 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 31ms (Views: 27.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:26:36 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 29ms (Views: 24.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:27:48 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 23ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:28:01 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 39ms (Views: 28.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:28:06 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 42ms (Views: 38.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:28:22 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 41ms (Views: 36.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:28:24 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 42ms (Views: 33.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/rails/info" for 127.0.0.1 at 2018-03-28 19:30:00 +1100
+Processing by Rails::InfoController#index as HTML
+Redirected to http://localhost:3000/rails/info/routes
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2018-03-28 19:30:00 +1100
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb [17 times] (6.0ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 31ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:30:57 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 5.9ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 0, expected 1)):
+    6: <% end %>
+    7: 
+    8: 
+    9: <%= link_to 'Delete Bird', @bird, method => 'delete' %>
+  
+app/views/birds/show.html.erb:9:in `method'
+app/views/birds/show.html.erb:9:in `_app_views_birds_show_html_erb___2775716099105292964_70189379109160'
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:31:10 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (164.9ms)
+Completed 500 Internal Server Error in 176ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `bird' for #<#<Class:0x007fac7a043458>:0x007fac7647b650>
+Did you mean?  @bird):
+    6: <% end %>
+    7: 
+    8: 
+    9: <%= link_to 'Delete Bird', bird, method => 'delete' %>
+  
+app/views/birds/show.html.erb:9:in `_app_views_birds_show_html_erb___2775716099105292964_70189347766980'
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:31:17 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 0, expected 1)):
+    6: <% end %>
+    7: 
+    8: 
+    9: <%= link_to 'Delete Bird', @bird, method => 'delete' %>
+  
+app/views/birds/show.html.erb:9:in `method'
+app/views/birds/show.html.erb:9:in `_app_views_birds_show_html_erb___2775716099105292964_70189334392500'
+Started GET "/birds/3" for 127.0.0.1 at 2018-03-28 19:32:26 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 27ms (Views: 23.7ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/birds/3" for 127.0.0.1 at 2018-03-28 19:32:30 +1100
+Processing by BirdsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"I3tU6oHScqQHomiI0Xfx30XJILG2K3wHSvi5eg/1ur5xxOb/Eetcb2XLG6VD4wFQM/H4K362OOX1/0oFEipp5A==", "id"=>"3"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "birds" WHERE "birds"."id" = $1[0m  [["id", 3]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/birds
+Completed 302 Found in 7ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:32:30 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 26ms (Views: 21.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/4" for 127.0.0.1 at 2018-03-28 19:32:35 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 27ms (Views: 22.9ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/birds/4" for 127.0.0.1 at 2018-03-28 19:32:38 +1100
+Processing by BirdsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Y5Uf8wBkHOtJHZXS1KeSXv2Yiv0SzODczDNXUphqqBAxKq3mkF0yICt05v9GM2LRi6BSZ9pRpD5zNKQthbV7Sg==", "id"=>"4"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "birds" WHERE "birds"."id" = $1[0m  [["id", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/birds
+Completed 302 Found in 4ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:32:38 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 27ms (Views: 23.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:33:01 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 45ms (Views: 38.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:33:02 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 36ms (Views: 31.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:33:03 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 31ms (Views: 24.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/rails/info" for 127.0.0.1 at 2018-03-28 19:33:29 +1100
+Processing by Rails::InfoController#index as HTML
+Redirected to http://localhost:3000/rails/info/routes
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2018-03-28 19:33:29 +1100
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb [17 times] (7.8ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/actionpack-5.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/mandytang/.rvm/gems/ruby-2.4.1/gems/railties-5.1.5/lib/rails/templates/rails/info/routes.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 45ms (Views: 36.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:33:39 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.6ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 41ms (Views: 34.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:33:40 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/edit.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 36ms (Views: 29.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:34:03 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.0ms)
+  Rendered birds/edit.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <%= form_for @bird do |f|  %>
+    2: 
+    3: <%= f.label :name, :autofocus => "true", :required => "true" %>
+    4: <%= f.text_field :name %>
+  
+app/views/birds/_form.html.erb:1:in `_app_views_birds__form_html_erb__3567795811905514874_70189372951700'
+app/views/birds/edit.html.erb:2:in `_app_views_birds_edit_html_erb__2618039417456755462_70189373181080'
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:34:44 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.2ms)
+  Rendered birds/edit.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 42ms (Views: 26.3ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:35:30 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.3ms)
+  Rendered birds/edit.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 43ms (Views: 26.7ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:35:31 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (1.8ms)
+  Rendered birds/edit.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 25ms (Views: 21.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:35:32 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (1.8ms)
+  Rendered birds/edit.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 26ms (Views: 22.4ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/birds/1" for 127.0.0.1 at 2018-03-28 19:36:15 +1100
+Processing by BirdsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KRIGvipygb19TcvFrY5VSfDCcKLIRYVc1vqFjiquXtJ7rbSrukuvdh8kuOg/GqXGhvqoOADYwb5p/XbxN3GNiA==", "bird"=>{"name"=>"Superb Fairy Wren", "species"=>"Maluridae", "colour"=>"Brown, black and blue", "image"=>"http://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/AusGeo/2016/12/02/64279/Superb-fairy-wren-nest-and-eggs.jpg"}, "commit"=>"Update Bird", "id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "birds" SET "image" = $1 WHERE "birds"."id" = $2[0m  [["image", "http://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/AusGeo/2016/12/02/64279/Superb-fairy-wren-nest-and-eggs.jpg"], ["id", 1]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#update, rendering head :no_content
+Completed 204 No Content in 115ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:36:36 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 50ms (Views: 43.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:36:38 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 36ms (Views: 30.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1/edit" for 127.0.0.1 at 2018-03-28 19:36:41 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (4.2ms)
+  Rendered birds/edit.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 53ms (Views: 44.0ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/birds/1" for 127.0.0.1 at 2018-03-28 19:36:44 +1100
+Processing by BirdsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mumvDuj4wk4PKxKvX4M8QU3ZMsK8wFWnZOs3rokqotLyqgKRh22ryY3uYYunvetIZ3SOFJ0R5HNzSS8y081dcQ==", "bird"=>{"name"=>"Superb Fairy Wren", "species"=>"Maluridae", "colour"=>"Brown, black and blue", "image"=>"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Malurus_cyaneus_PM.jpg/440px-Malurus_cyaneus_PM.jpg"}, "commit"=>"Update Bird", "id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "birds" SET "image" = $1 WHERE "birds"."id" = $2[0m  [["image", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Malurus_cyaneus_PM.jpg/440px-Malurus_cyaneus_PM.jpg"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#update, rendering head :no_content
+Completed 204 No Content in 103ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:36:47 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 18.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:36:57 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 28ms (Views: 23.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:38:28 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 39ms (Views: 27.8ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:38:29 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (3.8ms)
+  Rendered eggs/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 35ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/eggs" for 127.0.0.1 at 2018-03-28 19:38:33 +1100
+Processing by EggsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HR42qz7PIXaV5/mpzlrwx2aRLzMg2ryq33yeyTWnepQiQn2KJR3Y95+XHRGy2xm4Ao/gjh5e/DN+W1cB4E9fyA==", "egg"=>{"name"=>"sdfdsf", "pattern"=>"sdfdsf", "image"=>""}, "commit"=>"Create Egg"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "eggs" ("name", "pattern", "image") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "sdfdsf"], ["pattern", "sdfdsf"], ["image", ""]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+No template found for EggsController#create, rendering head :no_content
+Completed 204 No Content in 104ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:38:37 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 38ms (Views: 32.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/4" for 127.0.0.1 at 2018-03-28 19:38:38 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 31ms (Views: 23.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/eggs/4" for 127.0.0.1 at 2018-03-28 19:38:40 +1100
+Processing by EggsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"etLekmRcLEP4AznH6JRLO9zfiCsFFdT4KfiSsPr34zoobWyH9GUCiJpqSup6ALu0qudQsc2IkBqW/2HP5ygwYA==", "id"=>"4"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[31mDELETE FROM "eggs" WHERE "eggs"."id" = $1[0m  [["id", 4]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/eggs
+Completed 302 Found in 7ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:38:40 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 25ms (Views: 21.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:38:55 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 33ms (Views: 22.1ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:38:56 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (2.5ms)
+  Rendered eggs/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 49ms (Views: 24.9ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:38:56 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.8ms)
+  Rendered birds/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 33ms (Views: 29.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:38:57 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 40ms (Views: 31.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 19:38:59 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 38ms (Views: 33.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:39:00 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (1.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 39ms (Views: 31.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 19:39:01 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 32ms (Views: 27.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:39:16 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 40ms (Views: 33.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 19:39:17 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (1.6ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 36ms (Views: 24.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/birds/2/edit" for 127.0.0.1 at 2018-03-28 19:39:18 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.2ms)
+  Rendered birds/edit.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 41ms (Views: 33.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/birds/2" for 127.0.0.1 at 2018-03-28 19:39:20 +1100
+Processing by BirdsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zaad3vVWtH85kjWwjoPNx2Mcw0PqslsJ02AVNj7wgeJfMVBTaHG6ur5bRtLu4tidrKK+1GRpBRctgPUHvZSFnA==", "bird"=>{"name"=>"Kingfisher", "species"=>"Alcedinidae", "colour"=>"Blue and orange", "image"=>"https://upload.wikimedia.org/wikipedia/commons/7/72/Alcedo_azurea_-_Julatten.jpg"}, "commit"=>"Update Bird", "id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "birds" SET "image" = $1 WHERE "birds"."id" = $2[0m  [["image", "https://upload.wikimedia.org/wikipedia/commons/7/72/Alcedo_azurea_-_Julatten.jpg"], ["id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+No template found for BirdsController#update, rendering head :no_content
+Completed 204 No Content in 110ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/birds/2/edit" for 127.0.0.1 at 2018-03-28 19:40:11 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.1ms)
+  Rendered birds/edit.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 44ms (Views: 30.2ms | ActiveRecord: 4.8ms)
+
+
+Started PATCH "/birds/2" for 127.0.0.1 at 2018-03-28 19:40:18 +1100
+Processing by BirdsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"58pXnGXMYWtv7IcgJRADliWl/eAjdpWqVgzxJyaPkqe1deWJ9fVPoA2F9A23hPMZU50leuvr0UjpCwJYO1BB/Q==", "bird"=>{"name"=>"Kingfisher", "species"=>"Alcedinidae", "colour"=>"Blue and orange", "image"=>"https://upload.wikimedia.org/wikipedia/commons/7/72/Alcedo_azurea_-_Julatten.jpg"}, "commit"=>"Update Bird", "id"=>"2"}
+  [1m[36mBird Load (1.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/birds/2
+Completed 302 Found in 6ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 19:40:18 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 19.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:40:24 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 40ms (Views: 34.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:40:25 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 32ms (Views: 27.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:40:26 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 41ms (Views: 35.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/5" for 127.0.0.1 at 2018-03-28 19:40:26 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 33ms (Views: 27.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:40:30 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (3.0ms)
+  Rendered birds/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 38ms (Views: 33.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:40:30 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 41ms (Views: 27.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:40:31 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (2.4ms)
+  Rendered eggs/new.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 36ms (Views: 31.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:40:32 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.9ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 55ms (Views: 48.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:40:33 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered birds/_form.html.erb (2.5ms)
+  Rendered birds/new.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 38ms (Views: 31.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:40:33 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 33ms (Views: 27.8ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4865736340580905230)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddBirdIdToEggs (20180328084826)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "eggs" ADD "bird_id" integer[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180328084826"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4865736340580905230)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:54:31 +1100
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 266ms (Views: 242.3ms | ActiveRecord: 7.1ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:54:34 +1100
+Processing by BirdsController#index as HTML
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (Unknown key: :optional. Valid keys are: :class_name, :anonymous_class, :foreign_key, :validate, :autosave, :table_name, :before_add, :after_add, :before_remove, :after_remove, :extend, :primary_key, :dependent, :as, :through, :source, :source_type, :inverse_of, :counter_cache, :join_table, :foreign_type, :index_errors):
+  
+app/models/bird.rb:2:in `<class:Bird>'
+app/models/bird.rb:1:in `<top (required)>'
+app/controllers/birds_controller.rb:3:in `index'
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:55:12 +1100
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:55:22 +1100
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 19:55:22 +1100
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:55:22 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 47ms (Views: 33.8ms | ActiveRecord: 6.8ms)
+
+
+Processing by EggsController#index as HTML
+Processing by BirdsController#new as HTML
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  Rendering birds/new.html.erb within layouts/application
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mBird Load (31.6ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (38.3ms)
+  Rendered birds/_form.html.erb (36.0ms)
+  Rendered birds/new.html.erb within layouts/application (41.1ms)
+Completed 200 OK in 107ms (Views: 71.1ms | ActiveRecord: 16.4ms)
+
+
+Completed 200 OK in 113ms (Views: 74.7ms | ActiveRecord: 31.6ms)
+
+
+  [1m[36mEgg Load (1.0ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+Started GET "/birds/new" for 127.0.0.1 at 2018-03-28 19:55:22 +1100
+Processing by BirdsController#new as HTML
+  Rendering birds/new.html.erb within layouts/application
+  Rendered eggs/index.html.erb within layouts/application (110.1ms)
+  Rendered birds/_form.html.erb (3.1ms)
+Completed 200 OK in 231ms (Views: 142.9ms | ActiveRecord: 58.9ms)
+
+
+  Rendered birds/new.html.erb within layouts/application (65.8ms)
+Completed 200 OK in 102ms (Views: 96.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 19:55:24 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.8ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 43ms (Views: 36.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:55:25 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.8ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (10.3ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 1.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `egg' for #<Bird:0x007ff034ab0668>
+Did you mean?  eggs):
+     5: <%= image_tag @bird.image, :alt => @bird.name, :class => 'feature' %>
+     6: <% end %>
+     7: 
+     8: <% if @bird.egg.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= image_tag @bird.egg.image, :alt => @egg.name, :class => 'feature' %>
+    11: 
+  
+app/views/birds/show.html.erb:8:in `_app_views_birds_show_html_erb__3834978649942703959_70334826202040'
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:55:48 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 1]]
+  Rendered birds/show.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 59ms (Views: 54.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 19:55:51 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.7ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 1]]
+  Rendered birds/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 35ms (Views: 25.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 19:57:02 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (8.6ms)
+  Rendered eggs/new.html.erb within layouts/application (20.2ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `' for #<Egg id: nil, name: nil, pattern: nil, image: nil, bird_id: nil>):
+     7: <%= f.label :image %>
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.select @birds %>
+    11: 
+    12: <%= f.submit %>
+    13: 
+  
+app/views/eggs/_form.html.erb:10:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334799186300'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334799186300'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334801408320'
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:00:59 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (6.6ms)
+  Rendered eggs/new.html.erb within layouts/application (9.5ms)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 4.0ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Birds):
+     7: <%= f.label :image %>
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.select :bird_id, Birds.pluck(:bird, :id), :include_blank => true %>
+    11: 
+    12: <%= f.submit %>
+    13: 
+  
+app/views/eggs/_form.html.erb:10:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334826712020'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334826712020'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334800296980'
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:01:37 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (5.8ms)
+  Rendered eggs/new.html.erb within layouts/application (8.6ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Birds):
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.label :bird_id %>
+    11: <%= f.select :bird_id, Birds.pluck(:bird, :id), :include_blank => true %>
+    12: 
+    13: <%= f.submit %>
+    14: 
+  
+app/views/eggs/_form.html.erb:11:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334806194860'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334806194860'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334801798660'
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:01:56 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (10.5ms)[0m  [1m[34mSELECT "bird", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (25.2ms)
+  Rendered eggs/new.html.erb within layouts/application (27.7ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 16.8ms)
+
+
+  
+ActionView::Template::Error (PG::UndefinedColumn: ERROR:  column "bird" does not exist
+LINE 1: SELECT "bird", "birds"."id" FROM "birds"
+               ^
+HINT:  Perhaps you meant to reference the column "birds.id".
+: SELECT "bird", "birds"."id" FROM "birds"):
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.label :bird_id %>
+    11: <%= f.select :bird_id, Bird.pluck(:bird, :id), :include_blank => true %>
+    12: 
+    13: <%= f.submit %>
+    14: 
+  
+app/views/eggs/_form.html.erb:11:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334798663620'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334798663620'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334838824100'
+Started GET "/eggs/" for 127.0.0.1 at 2018-03-28 20:04:12 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 72ms (Views: 65.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:04:14 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "bird", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (17.3ms)
+  Rendered eggs/new.html.erb within layouts/application (22.4ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 2.5ms)
+
+
+  
+ActionView::Template::Error (PG::UndefinedColumn: ERROR:  column "bird" does not exist
+LINE 1: SELECT "bird", "birds"."id" FROM "birds"
+               ^
+HINT:  Perhaps you meant to reference the column "birds.id".
+: SELECT "bird", "birds"."id" FROM "birds"):
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.label :bird_id %>
+    11: <%= f.select :bird_id, Bird.pluck(:bird, :id), :include_blank => true %>
+    12: 
+    13: <%= f.submit %>
+    14: 
+  
+app/views/eggs/_form.html.erb:11:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334838590640'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334838590640'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334838675960'
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:06:01 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  Rendered eggs/_form.html.erb (9.6ms)
+  Rendered eggs/new.html.erb within layouts/application (14.2ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Birds):
+     8: <%= f.url_field :image %>
+     9: 
+    10: <%= f.label :bird_id %>
+    11: <%= f.select :bird_id, Birds.pluck(:bird, :id), :include_blank => true %>
+    12: 
+    13: <%= f.submit %>
+    14: 
+  
+app/views/eggs/_form.html.erb:11:in `block in _app_views_eggs__form_html_erb__1239280957503862577_70334801093900'
+app/views/eggs/_form.html.erb:1:in `_app_views_eggs__form_html_erb__1239280957503862577_70334801093900'
+app/views/eggs/new.html.erb:3:in `_app_views_eggs_new_html_erb___1069892691601291667_70334805745920'
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:07:54 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (14.7ms)
+  Rendered eggs/new.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 54ms (Views: 48.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:08:02 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (4.4ms)
+  Rendered eggs/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 36ms (Views: 32.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:08:03 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (7.1ms)
+  Rendered eggs/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 46ms (Views: 41.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:08:04 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (2.8ms)
+  Rendered eggs/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 33ms (Views: 29.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:08:04 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (9.9ms)
+  Rendered eggs/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 38ms (Views: 31.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:08:06 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.9ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 45ms (Views: 38.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/5" for 127.0.0.1 at 2018-03-28 20:08:07 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 5]]
+  Rendered birds/show.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 42ms (Views: 32.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/birds/5/edit" for 127.0.0.1 at 2018-03-28 20:08:08 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (5.8ms)
+  Rendered birds/edit.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 50ms (Views: 41.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/new" for 127.0.0.1 at 2018-03-28 20:08:15 +1100
+Processing by EggsController#new as HTML
+  Rendering eggs/new.html.erb within layouts/application
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (12.7ms)
+  Rendered eggs/new.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 59ms (Views: 52.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:08:16 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 35ms (Views: 29.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:08:17 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.6ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 42ms (Views: 32.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:08:18 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.6ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 41ms (Views: 33.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:08:23 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 41ms (Views: 35.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 20:08:24 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 40ms (Views: 34.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:08:24 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 35ms (Views: 28.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:08:29 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 25ms (Views: 21.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:08:30 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:08:32 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 41ms (Views: 36.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 20:08:33 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 35ms (Views: 28.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:08:34 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.6ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 39ms (Views: 30.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:08:43 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  Rendered eggs/edit.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 30ms (Views: 21.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:09:04 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (2.8ms)
+  Rendered eggs/edit.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 33ms (Views: 29.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:09:22 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (8.6ms)
+  Rendered eggs/edit.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 37ms (Views: 32.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/1/edit" for 127.0.0.1 at 2018-03-28 20:09:23 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "birds"."name" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (3.2ms)
+  Rendered eggs/edit.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 27ms (Views: 23.0ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/eggs/1" for 127.0.0.1 at 2018-03-28 20:09:29 +1100
+Processing by EggsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v+vp2vVBGmVkLSCvXH6XmGgOdImjC8aCOR5efGuzo5/tVFvPZXg0rgZEU4LO6mcXHjasE2uWgmCGGa0DdmxwxQ==", "egg"=>{"name"=>"Superb Fairy Wren egg", "pattern"=>"Matte white with reddish-brown splotches", "image"=>"", "bird_id"=>"Superb Fairy Wren"}, "commit"=>"Update Egg", "id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "eggs" SET "image" = $1, "bird_id" = $2 WHERE "eggs"."id" = $3[0m  [["image", ""], ["bird_id", 0], ["id", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/eggs/1
+Completed 302 Found in 7ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 20:09:29 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 17.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:09:34 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 38ms (Views: 32.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 20:09:35 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 1]]
+  Rendered birds/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 39ms (Views: 29.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:09:45 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (1.0ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 44ms (Views: 36.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:09:46 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 31ms (Views: 26.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:09:47 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (5.7ms)
+  Rendered eggs/edit.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 46ms (Views: 39.3ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/eggs/2" for 127.0.0.1 at 2018-03-28 20:09:49 +1100
+Processing by EggsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LVhoJjiMcXhRL5/Fat/Hephb1MbANpW0E0VP4AR370zI27eb5Cbw7RblF/KyWHzBl10uspj46PpC27y9RJmGOA==", "egg"=>{"name"=>"Kingfisher egg", "pattern"=>"White and glossy", "image"=>"", "bird_id"=>"2"}, "commit"=>"Update Egg", "id"=>"2"}
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "eggs" SET "image" = $1, "bird_id" = $2 WHERE "eggs"."id" = $3[0m  [["image", ""], ["bird_id", 2], ["id", 2]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/eggs/2
+Completed 302 Found in 8ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:09:49 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 33ms (Views: 29.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:09:51 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 36ms (Views: 31.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:09:52 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (18.7ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `image' for #<Egg::ActiveRecord_Associations_CollectionProxy:0x007ff031bce1d8>):
+     7: 
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= image_tag @bird.eggs.image, :alt => @egg.name, :class => 'feature' %>
+    11: 
+    12: <% end %>
+    13: 
+  
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334801721920'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:10:23 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (14.0ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `egg' for #<Bird:0x007ff034c272a8>
+Did you mean?  eggs):
+     7: 
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= image_tag @bird.egg.image, :alt => @egg.name, :class => 'feature' %>
+    11: 
+    12: <% end %>
+    13: 
+  
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334800526960'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:10:41 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (6.6ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `image' for #<Egg::ActiveRecord_Associations_CollectionProxy:0x007ff0321d63a0>):
+     7: 
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= image_tag @bird.eggs.image, :alt => @egg.name, :class => 'feature' %>
+    11: 
+    12: <% end %>
+    13: 
+  
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334805080120'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:12:17 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (178.4ms)
+Completed 500 Internal Server Error in 189ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `bird' for #<#<Class:0x007ff031c2dc78>:0x007ff0319aea38>
+Did you mean?  @bird):
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= @bird.eggs.each do |egg| %>
+    11: <%= image_tag bird.eggs.image, :alt => egg.name, :class => 'feature' %>
+    12: <% end %>
+    13: <% end %>
+    14: 
+  
+app/views/birds/show.html.erb:11:in `block in _app_views_birds_show_html_erb__3834978649942703959_70334800568400'
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334800568400'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:12:36 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (9.5ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `image' for #<Egg::ActiveRecord_Associations_CollectionProxy:0x007ff031b55c60>):
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= @bird.eggs.each do |egg| %>
+    11: <%= image_tag @bird.eggs.image, :alt => egg.name, :class => 'feature' %>
+    12: <% end %>
+    13: <% end %>
+    14: 
+  
+app/views/birds/show.html.erb:11:in `block in _app_views_birds_show_html_erb__3834978649942703959_70334801487400'
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334801487400'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:12:51 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 32ms (Views: 28.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:13:05 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 25ms (Views: 21.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:13:07 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 35ms (Views: 30.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:13:49 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 28ms (Views: 24.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:14:29 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (5.4ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `image' for nil:NilClass):
+     8: <% if @bird.eggs.present? %>
+     9: <h2>Eggs</h2>
+    10: <%= @bird.eggs.each do |egg| %>
+    11: <%= image_tag @egg.image %>
+    12: <% end %>
+    13: <% end %>
+    14: 
+  
+app/views/birds/show.html.erb:11:in `block in _app_views_birds_show_html_erb__3834978649942703959_70334805713060'
+app/views/birds/show.html.erb:10:in `_app_views_birds_show_html_erb__3834978649942703959_70334805713060'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:14:33 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 23ms (Views: 18.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:15:21 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.2ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 50ms (Views: 42.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/birds/5" for 127.0.0.1 at 2018-03-28 20:15:22 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 5]]
+  Rendered birds/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 44ms (Views: 35.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:15:25 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.8ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 42ms (Views: 35.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 20:15:25 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (0.7ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 1]]
+  Rendered birds/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 42ms (Views: 36.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:15:27 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 44ms (Views: 35.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:15:28 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Load (2.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 49ms (Views: 37.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:15:33 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 42ms (Views: 34.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:15:34 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 38ms (Views: 31.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:15:36 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (6.6ms)
+  Rendered eggs/edit.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 46ms (Views: 36.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:16:45 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (2.7ms)
+  Rendered eggs/edit.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 39ms (Views: 34.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:16:48 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 38ms (Views: 30.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:16:50 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 33ms (Views: 25.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:16:51 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 36ms (Views: 28.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:16:52 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 23ms (Views: 19.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:17:46 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+nd=( unless egg.image.empty? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:17:56 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (2.4ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+nd=( unless egg.image.empty? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:23: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:25: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:23: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:25: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:17:58 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+nd=( unless egg.image.empty? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:23: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:25: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:23: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:25: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:18:07 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+nd=( unless egg.image.empty? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:18:14 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+pend=( unless egg.image.nil? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:18:24 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.3ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+pend=( if egg.image.present? );@output_buffer.safe_append='
+                              ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/birds/show.html.erb:11: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/birds/show.html.erb:13: syntax error, unexpected keyword_end, expecting ')'
+app/views/birds/show.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/birds/show.html.erb:24: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:18:40 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 31ms (Views: 27.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:19:04 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 42ms (Views: 35.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:19:05 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 33ms (Views: 25.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:19:06 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (3.0ms)
+  Rendered eggs/edit.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 37ms (Views: 28.9ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/eggs/2" for 127.0.0.1 at 2018-03-28 20:19:37 +1100
+Processing by EggsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OH93kdFQ9oqst8CRTkfPvdrGeQS3ieBlVK2M+FJR2w7d/KgsDfp3H+t9SKaWwHQG1cCDcO9HnSsFM3+lEr+yeg==", "egg"=>{"name"=>"Kingfisher egg", "pattern"=>"White and glossy", "image"=>"http://www.africancuckoos.zoo.cam.ac.uk/fieldwork/images/Honeyguide-kingfisher.jpg", "bird_id"=>"2"}, "commit"=>"Update Egg", "id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "eggs" SET "image" = $1 WHERE "eggs"."id" = $2[0m  [["image", "http://www.africancuckoos.zoo.cam.ac.uk/fieldwork/images/Honeyguide-kingfisher.jpg"], ["id", 2]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/eggs/2
+Completed 302 Found in 6ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:19:37 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 23ms (Views: 18.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:19:39 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 30ms (Views: 23.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:19:40 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 35ms (Views: 29.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:20:04 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 24ms (Views: 19.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:20:16 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms)
+
+
+  
+SyntaxError (/Users/mandytang/Projects/WDi26-Homework/Mandy_Tang/week_05/day_03/nest/app/views/birds/show.html.erb:21: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/birds/show.html.erb:21: syntax error, unexpected keyword_ensure, expecting end-of-input
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:20:27 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.5ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  Rendered birds/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 29ms (Views: 23.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:20:57 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 24ms (Views: 18.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:22:27 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 33ms (Views: 27.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:22:29 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.6ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 42ms (Views: 32.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/birds/2/edit" for 127.0.0.1 at 2018-03-28 20:22:46 +1100
+Processing by BirdsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.6ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/edit.html.erb within layouts/application
+  Rendered birds/_form.html.erb (5.5ms)
+  Rendered birds/edit.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 43ms (Views: 34.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:22:53 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 45ms (Views: 38.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:22:54 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.9ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 41ms (Views: 32.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:22:55 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (22.8ms)
+  Rendered eggs/edit.html.erb within layouts/application (26.9ms)
+Completed 200 OK in 57ms (Views: 47.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/eggs/2/edit" for 127.0.0.1 at 2018-03-28 20:25:28 +1100
+Processing by EggsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/edit.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "birds"."name", "birds"."id" FROM "birds"[0m
+  Rendered eggs/_form.html.erb (3.1ms)
+  Rendered eggs/edit.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 38ms (Views: 34.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:25:29 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 39ms (Views: 33.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:25:30 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (9.2ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (The asset "Kingfisher" is not present in the asset pipeline.):
+     5: <% end %>
+     6: 
+     7: <% if @egg.bird.present? %>
+     8: <%= link_to image_tag(@egg.bird.name), @egg.bird %>
+     9: <% end %>
+    10: 
+    11: <br>
+  
+app/views/eggs/show.html.erb:8:in `_app_views_eggs_show_html_erb__107559215818580371_70334855059940'
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:25:38 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 26ms (Views: 21.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:25:55 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 32ms (Views: 27.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:26:07 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.4ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 36ms (Views: 31.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:26:18 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 27ms (Views: 22.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:26:33 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 25ms (Views: 21.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/2" for 127.0.0.1 at 2018-03-28 20:26:35 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 2], ["LIMIT", 1]]
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs" WHERE "eggs"."bird_id" = $1[0m  [["bird_id", 2]]
+  Rendered birds/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 36ms (Views: 26.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:26:38 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (0.4ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 38ms (Views: 31.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/birds/1" for 127.0.0.1 at 2018-03-28 20:26:38 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 1], ["LIMIT", 1]]
+  Rendered birds/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 33ms (Views: 25.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/birds" for 127.0.0.1 at 2018-03-28 20:26:40 +1100
+Processing by BirdsController#index as HTML
+  Rendering birds/index.html.erb within layouts/application
+  [1m[36mBird Load (1.5ms)[0m  [1m[34mSELECT "birds".* FROM "birds"[0m
+  Rendered birds/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 41ms (Views: 34.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/birds/5" for 127.0.0.1 at 2018-03-28 20:26:41 +1100
+Processing by BirdsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBird Load (0.2ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering birds/show.html.erb within layouts/application
+  [1m[36mEgg Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "eggs" WHERE "eggs"."bird_id" = $1 LIMIT $2[0m  [["bird_id", 5], ["LIMIT", 1]]
+  Rendered birds/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 32ms (Views: 24.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/eggs" for 127.0.0.1 at 2018-03-28 20:26:44 +1100
+Processing by EggsController#index as HTML
+  Rendering eggs/index.html.erb within layouts/application
+  [1m[36mEgg Load (0.5ms)[0m  [1m[34mSELECT "eggs".* FROM "eggs"[0m
+  Rendered eggs/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 40ms (Views: 34.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/eggs/3" for 127.0.0.1 at 2018-03-28 20:26:45 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mEgg Load (0.3ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  Rendered eggs/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 34ms (Views: 27.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/eggs/2" for 127.0.0.1 at 2018-03-28 20:26:49 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEgg Load (0.8ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (1.1ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 45ms (Views: 34.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/eggs/1" for 127.0.0.1 at 2018-03-28 20:26:51 +1100
+Processing by EggsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEgg Load (0.2ms)[0m  [1m[34mSELECT  "eggs".* FROM "eggs" WHERE "eggs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering eggs/show.html.erb within layouts/application
+  [1m[36mBird Load (0.3ms)[0m  [1m[34mSELECT  "birds".* FROM "birds" WHERE "birds"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered eggs/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 41ms (Views: 32.4ms | ActiveRecord: 0.5ms)
+
+
