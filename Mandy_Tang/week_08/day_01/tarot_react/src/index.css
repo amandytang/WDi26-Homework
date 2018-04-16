@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:800');
+
+body, html, img {
+  margin: 0 auto;
+  display: block;
+  padding-top: 20px;
+  font-family: sans-serif;
+  background-color: #eaeff9;
+}
+
+img {
+
+}
+
+button {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+  background-color: #c1bdb9;
+  outline: 2px solid #909090;
+  color: #37332f;
+  font-size: 1.3em;
+  font-family: 'Alegreya SC', serif;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+img {
+  padding:0;
+}
+
+.card {
+  background: url(https://i.imgur.com/T6dTnte.jpg);
+  width:175px;
+  height: 300px;
+  border-top: 13px solid #ded9c4;
+  border-bottom: 13px solid #ded9c4;
+  border-right: 12px solid #ded9c4;
+  border-left: 12px solid #ded9c4;
+  outline: 2px solid #909090;
+  box-shadow: 3px 4px 4px rgba(0,0,0,0.3);
+  margin: 0 auto;
+  display: block;
+}
+
+.summary {
+  width: 375px;
+  margin: 0 auto;
+  color: #272320;
+  font-family: 'Source Serif Pro', serif;
+  padding: 15px;
+  text-align: justify;
+}
